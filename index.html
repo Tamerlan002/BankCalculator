@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap-4.4.1/bootstrap-4.4.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container pt-3">
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3 offset-0 pb-2">
+                <button type="button" class="btn btn-success" id="oldCarToggle" onclick="openOldCar()">
+                    İşlənmiş avtomobil
+                </button>
+                <button type="button" class="btn btn-secondary" id="newCarToggle" onclick="openNewCar()">
+                    Yeni avtomobil
+                </button>
+            </div>
+            <div class="col-12 col-md-6 oldCar offset-0 offset-md-3">
+                <form action="">
+                    <div class="row">
+                        <div class="col-12">
+                            <p><b>İşlənmiş avtomobil</b></p>
+                        </div>
+                        <div class="col-6">
+                            <label for="chooseTraffic">Məhsul</label>
+                            <select name="chooseTraffic" id="chooseTraffic" onchange="setElements()">
+                                <option value="lizinq">Lizinq</option>
+                                <option value="Faktorinq">Faktorinq</option>
+                            </select>
+                            <br>
+
+                            <!-- Avtomobilin deyeri -->
+                            <label for="carValue">Avtomobilin dəyəri</label>
+                            <input type="text" name="carValue" id="carValue" oninput="checkValidation()">
+                            <br>
+
+                            <!-- Ilkin odenis -->
+                            <label for="deposit">İlkin ödəniş</label>
+                            <input type="text" name="deposit" id="deposit" oninput="checkDeposit()">
+                            <br>
+
+                            <!-- Kredit meblegi -->
+                            <label for="rentAmount">Kredit məbləği</label>
+                            <input type="text" name="rentAmount" id="rentAmount" readonly>
+                            <br>
+
+                            <!-- Muddet -->
+                            <label for="duration">Müddət</label>
+                            <select name="duration" id="duration" onchange="setElements()">
+                                <option value="12" id="12">12</option>
+                                <option value="12" id="24">24</option>
+                                <option value="12" id="36">36</option>
+                            </select>
+                            <br>
+
+                            <!-- Illik faiz -->
+                            <label for="percentPerYear">İllik faiz dərəcəsi</label>
+                            <input type="text" name="percentPerYear" id="percentPerYear" readonly>
+                            <br>
+                        </div>
+                        <div class="col-6">
+
+                            <!-- Kommisiya deyeri -->
+                            <label for="commissionAmount">Komissiya dəyəri</label>
+                            <input type="text" name="commissionAmount" id="commissionAmount" readonly>
+                            <br>
+
+                            <!-- Sigorta xerci -->
+                            <label for="insuranceAmount">Sığorta xərci məbləği</label>
+                            <input type="text" name="insuranceAmount" id="insuranceAmount" readonly>
+                            <br>
+
+                            <!-- DYP -->
+                            <label for="DYP">DYP</label>
+                            <input type="text" name="DYP" id="DYP" readonly>
+
+
+
+
+                            <br>
+
+                            <div class="marginTop">
+
+                                <!-- initially required fund -->
+                                <label for="initiallyRequired">İlkin tələb olunan vəsait</label>
+                                <input type="text" name="initiallyRequired" id="initiallyRequired" readonly>
+
+                                <br>
+
+                                <!-- Monthly payment -->
+                                <label for="monthlyPayment">Avtomobilin deyeri</label>
+                                <input type="text" name="monthlyPayment" id="monthlyPayment" readonly>
+
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <button onclick="setElements();" type="button" class="btn btn-dark calculate">
+                                Hesabla
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button onclick="cleanInputs()" type="button" class="btn btn-dark calculate">
+                                Sıfırla
+                            </button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+
+
+            <div class="col-12 col-md-6 newCar offset-md-3 offset-0 d-none">
+                <form action="">
+                    <div class="row">
+                        <div class="col-12">
+                            <p><b>Yeni avtomobil</b></p>
+                        </div>
+                        <div class="col-6">
+                            <label for="chooseTrafficNew">Məhsul</label>
+                            <select name="chooseTrafficNew" id="chooseTrafficNew" onchange="setElementsNew()">
+                                <option value="lizinq">Lizinq</option>
+                                <option value="Faktorinq">Faktorinq</option>
+                            </select>
+                            <br>
+
+                            <!-- Avtomobilin deyeri -->
+                            <label for="carValueNew">Avtomobilin dəyəri</label>
+                            <input type="text" name="carValueNew" id="carValueNew">
+                            <br>
+
+                            <!-- Ilkin odenis -->
+                            <label for="deposit">İlkin ödəniş</label>
+                            <input type="text" name="depositNew" id="depositNew" oninput="checkDepositNew()">
+                            <br>
+
+                            <!-- Kredit meblegi -->
+                            <label for="rentAmountNew">Kredit məbləği</label>
+                            <input type="text" name="rentAmountNew" id="rentAmountNew" readonly>
+                            <br>
+
+                            <!-- Muddet -->
+                            <label for="durationNew">Müddət</label>
+                            <select name="durationNew" id="durationNew" onchange="setElementsNew()">
+                                <option value="12" id="12">12</option>
+                                <option value="12" id="24">24</option>
+                                <option value="12" id="36">36</option>
+                            </select>
+                            <br>
+
+                            <!-- Illik faiz -->
+                            <label for="percentPerYearNew">İllik faiz dərəcəsi</label>
+                            <input type="text" name="percentPerYearNew" id="percentPerYearNew" readonly>
+                            <br>
+                        </div>
+                        <div class="col-6">
+
+                            <!-- Kommisiya deyeri -->
+                            <label for="commissionAmountNew">Komissiya dəyəri</label>
+                            <input type="text" name="commissionAmountNew" id="commissionAmountNew" readonly>
+                            <br>
+
+                            <!-- Sigorta xerci -->
+                            <label for="insuranceAmountNew">Sığorta xərci məbləği</label>
+                            <input type="text" name="insuranceAmountNew" id="insuranceAmountNew" readonly>
+                            <br>
+
+                            <!-- DYP -->
+                            <label for="DYPNew">DYP</label>
+                            <input type="text" name="DYPNew" id="DYPNew" readonly>
+
+
+
+
+                            <br>
+
+                            <div class="marginTop">
+
+                                <!-- initially required fund -->
+                                <label for="initiallyRequiredNew">İlkin tələb olunan vəsait</label>
+                                <input type="text" name="initiallyRequiredNew" id="initiallyRequiredNew" readonly>
+
+                                <br>
+
+                                <!-- Monthly payment -->
+                                <label for="monthlyPaymentNew">Avtomobilin deyeri</label>
+                                <input type="text" name="monthlyPaymentNew" id="monthlyPaymentNew" readonly>
+
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <button onclick="setElementsNew();" type="button" class="btn btn-dark calculate">
+                                Hesabla
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button onclick="cleanInputs()" type="button" class="btn btn-dark calculate">
+                                Sıfırla
+                            </button>
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <script src="./script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</body>
+
+</html>
